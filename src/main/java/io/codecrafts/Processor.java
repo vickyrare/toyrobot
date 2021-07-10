@@ -9,6 +9,14 @@ public class Processor {
 
     private Table table;
 
+    private int numXCells;
+    private int numYCells;
+
+    public Processor(int numXCells, int numYCells){
+        this.setNumXCells(numXCells);
+        this.setNumYCells(numYCells);
+    }
+
     public LinkedList<String> processInput() {
         Scanner sc = new Scanner(System.in);
         LinkedList<String> tokenList = new LinkedList<>();
@@ -28,12 +36,20 @@ public class Processor {
     }
 
     public void process(LinkedList<String> tokenList) {
+        table = new Table(numXCells, numYCells);
+        getTable().calculateEdgeType();
+
         String place = tokenList.pop();
         String location = tokenList.pop();
         String locationTokens[] = location.split(",");
+
+        if ((Integer.parseInt(locationTokens[0]) < 0 || Integer.parseInt(locationTokens[0]) >= numXCells)
+                || (Integer.parseInt(locationTokens[1]) < 0 || Integer.parseInt(locationTokens[1]) >= numYCells)) {
+            System.out.println("Output: ROBOT MISSING");
+            return;
+        }
+
         if (place.equals("PLACE") && locationTokens.length == 3) {
-            setTable(new Table(5, 5));
-            getTable().calculateEdgeType();
             Direction direction = getDirectionFromString(locationTokens[2]);
             getTable().placeRobot(Integer.parseInt(locationTokens[0]), Integer.parseInt(locationTokens[1]), direction);
             while (tokenList.size() > 0) {
@@ -63,5 +79,21 @@ public class Processor {
 
     public void setTable(Table table) {
         this.table = table;
+    }
+
+    public int getNumXCells() {
+        return numXCells;
+    }
+
+    public void setNumXCells(int numXCells) {
+        this.numXCells = numXCells;
+    }
+
+    public int getNumYCells() {
+        return numYCells;
+    }
+
+    public void setNumYCells(int numYCells) {
+        this.numYCells = numYCells;
     }
 }

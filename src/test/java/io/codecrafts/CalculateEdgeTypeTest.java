@@ -12,7 +12,7 @@ public class CalculateEdgeTypeTest {
 
     @ParameterizedTest
     @MethodSource("withKeyAndEdgeType3X3")
-    void testCalculateEdgeType3X3(String key, EdgeType edgeType) {
+    public void testCalculateEdgeType3X3(String key, EdgeType edgeType) {
         table = new Table(3,3);
         assert(table.getSpots().get(key).getEdgeType() == edgeType);
     }
@@ -26,7 +26,7 @@ public class CalculateEdgeTypeTest {
 
     @ParameterizedTest
     @MethodSource("withKeyAndEdgeType5X5")
-    void testCalculateEdgeType5X5(String key, EdgeType edgeType) {
+    public void testCalculateEdgeType5X5(String key, EdgeType edgeType) {
         table = new Table(5,5);
         assert(table.getSpots().get(key).getEdgeType() == edgeType);
     }

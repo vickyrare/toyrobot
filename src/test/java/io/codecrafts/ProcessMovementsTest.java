@@ -7,14 +7,11 @@ import java.util.LinkedList;
 
 public class ProcessMovementsTest {
 
-    Processor processor;
-    @BeforeEach
-    void setup() {
-        processor = new Processor();
-    }
+
 
     @Test
-    void testMovements() {
+    public void testMovements() {
+        Processor processor = new Processor(5,5);
         LinkedList<String> tokenList = new LinkedList<>();
         tokenList.add("PLACE");
         tokenList.add("1,2,EAST");
@@ -30,7 +27,23 @@ public class ProcessMovementsTest {
     }
 
     @Test
-    void testTryToFallOffFromBottomLeftEdge() {
+    public void testPlaceRobotOutsideTable() {
+        Processor processor = new Processor(5,5);
+        LinkedList<String> tokenList = new LinkedList<>();
+        tokenList.add("PLACE");
+        tokenList.add("4,5,EAST");
+        tokenList.add("MOVE");
+        tokenList.add("MOVE");
+        tokenList.add("LEFT");
+        tokenList.add("MOVE");
+        tokenList.add("REPORT");
+        processor.process(tokenList);
+        assert(processor.getTable().getRobot() == null);
+    }
+
+    @Test
+    public void testTryToFallOffFromBottomLeftEdge() {
+        Processor processor = new Processor(5,5);
         LinkedList<String> tokenList = new LinkedList<>();
         tokenList.add("PLACE");
         tokenList.add("0,0,WEST");
@@ -43,7 +56,8 @@ public class ProcessMovementsTest {
     }
 
     @Test
-    void testRoundTripAroundEdges() {
+    public void testRoundTripAroundEdges() {
+        Processor processor = new Processor(5,5);
         LinkedList<String> tokenList = new LinkedList<>();
         tokenList.add("PLACE");
         tokenList.add("0,0,EAST");
@@ -74,7 +88,8 @@ public class ProcessMovementsTest {
     }
 
     @Test
-    void testZigZagMovement() {
+    public void testZigZagMovement() {
+        Processor processor = new Processor(5,5);
         LinkedList<String> tokenList = new LinkedList<>();
         tokenList.add("PLACE");
 
