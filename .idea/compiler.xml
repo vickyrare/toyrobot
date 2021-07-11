@@ -6,11 +6,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="ToyRobot" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="robotsim (1)" target="1.8" />
       <module name="robotsim (2)" target="1.8" />
+      <module name="ToyRobot" target="1.8" />
     </bytecodeTargetLevel>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="ToyRobot" options="-parameters" />
+    </option>
   </component>
 </project>
