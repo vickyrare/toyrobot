@@ -8,7 +8,6 @@ import static io.codecrafts.Utils.getDirectionFromString;
 public class CommandProcessor {
 
     private Table table;
-
     private int numXCells;
     private int numYCells;
 
