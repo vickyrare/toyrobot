@@ -5,16 +5,32 @@ import java.util.Scanner;
 
 import static io.codecrafts.Utils.getDirectionFromString;
 
-public class Processor {
+public class CommandProcessor {
 
     private Table table;
 
     private int numXCells;
     private int numYCells;
 
-    public Processor(int numXCells, int numYCells){
+    public CommandProcessor(int numXCells, int numYCells){
         this.setNumXCells(numXCells);
         this.setNumYCells(numYCells);
+    }
+
+    public LinkedList<String> processInput(String query) {
+        LinkedList<String> tokenList = new LinkedList<>();
+        if (!query.isEmpty()) {
+            String[] tokens = query.split(" ");
+            if (tokens.length < 2) {
+                System.out.println("Invalid input.");
+            } else {
+                tokenList = new LinkedList<>();
+                for (String token : tokens) {
+                    tokenList.add(token);
+                }
+            }
+        }
+        return tokenList;
     }
 
     public LinkedList<String> processInput() {
